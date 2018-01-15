@@ -6,7 +6,8 @@
                  [compojure "1.5.1"]
                  [ring/ring-json "0.4.0"]
                  [cheshire "5.8.0"]
-                 [clj-http "3.7.0"]]
+                 [clj-http "3.7.0"]
+                 [org.clojure/tools.logging "0.4.0"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler heartbeat-monitor.handler/app}
   :profiles
