@@ -4,8 +4,15 @@
       (:use ring.util.response)
       (:require [compojure.handler :as handler]
                 [ring.middleware.json :as middleware]
-                [compojure.route :as route]))
+                [compojure.route :as route]
+                [clj-http.client :as client]))
 
+(defn ping-host
+  "Send request to check status of endpoint"
+  [url]
+  (println 
+    (:body (client/get (str url))))
+)
 
 (defroutes app-routes
   (GET "/" [] "Hello World!")
@@ -14,10 +21,6 @@
 
 (def app
       (-> (handler/api app-routes)
-        (middleware/wrap-json-body)
-        (middleware/wrap-json-response)))
+          (middleware/wrap-json-body)
+          (middleware/wrap-json-response)))
 
-(defn ping-host
-  "Send request to check status of endpoint"
-  [url]
-  (let [response]))
