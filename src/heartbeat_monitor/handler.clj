@@ -13,8 +13,7 @@
   "Send request to check status of endpoint"
   [req]
   (let [url (get-in req[:params :url])] 
-    (client/get url) )
-)
+    (client/get url)))
 
 (defroutes app-routes
   (GET "/" [] "Hello World!")
@@ -22,8 +21,8 @@
   (route/not-found "Not Found"))
 
 (def app
-      (-> (handler/api app-routes)
-          (middleware/wrap-json-body)
-          (middleware/wrap-json-response)
-          (wrap-params)))
+  (-> (handler/api app-routes)
+    (middleware/wrap-json-body)
+    (middleware/wrap-json-response)
+    (wrap-params)))
 
