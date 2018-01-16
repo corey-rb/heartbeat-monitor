@@ -12,8 +12,11 @@
 (defn ping-host
   "Send request to check status of endpoint"
   [req]
-  (let [url (get-in req[:params :url])] 
-    (client/get url)))
+  (let [url (get-in req[:params :url])]  
+    (if-not url (ring.util.response/not-found "No URL Supplied"))
+    (if url (client/get url))
+  )
+)
 
 (defroutes app-routes
   (GET "/" [] "Hello World!")
